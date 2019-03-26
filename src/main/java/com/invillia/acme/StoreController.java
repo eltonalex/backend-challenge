@@ -25,6 +25,8 @@ public class StoreController {
 	public StoreController(StoreRepository storeRepository) {
 		this.repository = storeRepository;
 	}
+	
+	public StoreController() {}
 
 	@GetMapping(path = "/list/all")
 	@ResponseBody
@@ -51,9 +53,10 @@ public class StoreController {
 
 		if (name != null && name.length() > 0 && address != null && address.length() > 0) {
 			repository.save(store);
+			return store;
 		}
 
-		return store;
+		return null;
 	}
 
 	@GetMapping(path = "/name/{name}")
